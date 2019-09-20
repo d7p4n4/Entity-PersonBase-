@@ -11,6 +11,11 @@ namespace Entity
     [GUID("efa3e159-7591-427e-a690-c8eb607f2a7f")]
     public class PersonBase
     {
+        public PersonBase()
+        {
+            this.Certificates = new HashSet<Certificate>();
+        }
+
         [GUID("38923767-b8ee-4e29-a90b-5d76f1f6c447")]
         public Int32 id { get; set; }
         [GUID("5e32ce63-c7ec-459e-820f-242f0bb87be6")]
@@ -22,9 +27,10 @@ namespace Entity
         [GUID("ff10d0f3-23a1-43b1-a623-45d8633ad3c6")]
         public Boolean gender { get; set; }
         [GUID("d40c9fb2-7d1b-4c03-b8fb-e95696f86c96")]
-        public List<String> list { get; set; }
+        public ICollection<String> list { get; set; }
 
-        public PersonBase() { }
+        public virtual ICollection<Certificate> Certificates { get; set; }
+
 
         public Int32 getId()
         {
@@ -51,7 +57,7 @@ namespace Entity
             return gender;
         }
 
-        public List<String> getList()
+        public ICollection<String> getList()
         {
             return list;
         }
@@ -82,7 +88,7 @@ namespace Entity
             gender = newValue;
         }
 
-        public void setList(List<String> newValue)
+        public void setList(ICollection<String> newValue)
         {
             list = newValue;
         }

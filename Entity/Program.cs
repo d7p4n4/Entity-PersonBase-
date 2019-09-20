@@ -18,6 +18,15 @@ namespace Entity
                 ctx.People.Add(p);
                 ctx.SaveChanges();
             }
+
+            using (var ctx = new PersonContext())
+            {
+                var query = ctx.People
+                                .Where(s => s.name == "Izajás")
+                                .FirstOrDefault<PersonBase>();
+
+                Console.WriteLine(query.getName());
+            }
         }
     }
 }

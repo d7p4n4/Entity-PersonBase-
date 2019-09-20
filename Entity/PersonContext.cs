@@ -15,6 +15,22 @@ namespace Entity
         }
 
         public DbSet<PersonBase> People { get; set; }
+        public DbSet<Certificate> Certificates { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<PersonBase>()
+                        .HasMany<Certificate>(s => s.Certificates)
+                        .WithMany(c => c.People)
+                        .Map(cs =>
+                        {
+                            cs.MapLeftKey("PersonRefId");
+                            cs.MapRightKey("CertificateRefId");
+                            cs.ToTable("PersonWithCerts");
+                        });
+
+        }
     }
 }
 
