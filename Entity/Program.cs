@@ -10,9 +10,9 @@ namespace Entity
     {
         static void Main(string[] args)
         {
+            var p = new PersonBase();
             using (var ctx = new PersonContext())
             {
-                var p = new PersonBase();
                 p.setName("Izajás");
 
                 ctx.People.Add(p);
@@ -27,6 +27,7 @@ namespace Entity
 
                 Console.WriteLine(query.getName());
             }
+
         }
     }
 }
